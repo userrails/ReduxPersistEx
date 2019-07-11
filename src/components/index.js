@@ -9,16 +9,21 @@ class Remainder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: ''
+      text: '',
+      dueDate: null,
+      id: Math.random()
     }
   }
 
   // This tells redux is working now
-  addReminder() {
+  addReminders() {
+    console.log(new Date(this.state.dueDate));
     // console.log('this.state', this.state);
     // console.log('this', this);
-    console.log("this.state.dueDate", this.state.dueDate)
-    this.props.addReminder(this.state.text, this.state.dueDate);
+    // console.log("--------------this.state.dueDate", this.state.dueDate)
+    let dateval = new Date(this.state.dueDate);
+    const rec = {text: this.state.text, dueDate: dateval};
+    this.props.addReminder(rec);
   }
 
   deleteReminder(id) {
@@ -33,7 +38,7 @@ class Remainder extends Component {
 
   renderReminders() {
     const { reminders } = this.props;
-    // console.log('reminders', reminders );
+    console.log('**********reminders*******', reminders );
     return(
       <ul className="list-group col-sm-4">
         {
@@ -71,14 +76,13 @@ class Remainder extends Component {
                      onChange={event => this.setState({text: event.target.value})} />
             
               <input className="form-control"
-                     type="datetime-local"
                      onChange={event => this.setState({dueDate: event.target.value})} />
             </div>
             
             <div className="form-group">
               <button type="button"
                      className="btn btn-success"
-                     onClick={() => this.addReminder()}
+                     onClick={() => this.addReminders()}
                      >Add Reminder</button>
             </div>
 
@@ -106,7 +110,7 @@ class Remainder extends Component {
 function mapStateToProps(state) {
   console.log('state', state);
   return {
-    reminders: state
+    reminders: state.reminders
   }
 }
 

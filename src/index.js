@@ -20,7 +20,7 @@ export const configureStore = preloadedState => {
   return store
 }
 
-var store = configureStore({initialState: 'jkl'});
+var store = configureStore();
 
 
 ReactDOM.render(
