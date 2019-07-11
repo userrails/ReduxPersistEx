@@ -63,7 +63,7 @@ class Remainder extends Component {
           Reminder Application
         </div>
 
-        <div class="row">
+        <div className="row">
           <div className="form-inline">
             <div className="form-group">
               <input className="form-control"
@@ -75,14 +75,14 @@ class Remainder extends Component {
                      onChange={event => this.setState({dueDate: event.target.value})} />
             </div>
             
-            <div class="form-group">
+            <div className="form-group">
               <button type="button"
                      className="btn btn-success"
                      onClick={() => this.addReminder()}
                      >Add Reminder</button>
             </div>
 
-            <div class="form-group">
+            <div className="form-group">
               <div 
                 className="btn btn-danger"
                 onClick={() => this.props.clearReminders()}
