@@ -55,24 +55,17 @@ class Remainder extends Component {
               <input className="form-control"
                      placeholder="Enter ToDo ..."
                      onChange={event => this.setState({text: event.target.value})} />
-            
-              <input className="form-control"
-                     onChange={event => this.setState({dueDate: event.target.value})} />
-            </div>
-          </div>
-          <div class="row">
-            <div className="form-group">
-              <button type="button"
-                     className="btn btn-success"
-                     onClick={() => this.addReminders()}
-                     >Add Reminder</button>
-            </div>
-
-            <div className="form-group">
-              <button type="button"
-               className="btn btn-success"
-               onClick={() => this.props.clearReminders()}
-               >Clear Reminders</button>
+              <input className="form-control" onChange={event => this.setState({dueDate: event.target.value})} />
+              <div className="form-group">
+                <button type="button"
+                       className="btn btn-success"
+                       onClick={() => this.addReminders()}
+                       >Add Reminder</button>
+                <button type="button"
+                 className="btn btn-danger"
+                 onClick={() => this.props.clearReminders()}
+                 >Clear Reminders</button>
+              </div>
             </div>
           </div>
         </div>
