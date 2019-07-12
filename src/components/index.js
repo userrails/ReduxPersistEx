@@ -21,7 +21,7 @@ class Remainder extends Component {
   renderReminders() {
     const { reminders } = this.props;
     return(
-      <ul className="list-group col-sm-4">
+      <ul className="list-group col-sm-12">
         {
           reminders.map(reminder => {
             return (
@@ -29,7 +29,7 @@ class Remainder extends Component {
                 <div className="list-item">{reminder.text}</div>
                 <div className="list-item"><em>{moment(new Date(reminder.dueDate)).fromNow()}</em></div>
                 <div 
-                  className="list-item delete-button"
+                  className="list-item delete-button text-danger"
                   onClick={() => this.deleteReminder(reminder.id)}
                   >
                   &#x2715;
