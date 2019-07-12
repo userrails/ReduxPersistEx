@@ -5,12 +5,25 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
-import reducer from './reducers';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+
+import { PersistGate } from 'redux-persist/integration/react'
+
+
+import reducer from './reducers';
+
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
+const persistedReducer = persistReducer(persistConfig, reducer)
 
 export const configureStore = preloadedState => {
   const store = createStore(
-    reducer,
+    persistedReducer,
     preloadedState,
     composeWithDevTools(
       applyMiddleware(
@@ -21,11 +34,14 @@ export const configureStore = preloadedState => {
 }
 
 var store = configureStore();
+let persistor = persistStore(store);
 
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+      </PersistGate>
   </Provider>,
   document.getElementById('root'));
 
