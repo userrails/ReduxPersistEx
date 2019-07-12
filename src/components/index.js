@@ -6,39 +6,20 @@ import { addReminder, deleteReminder, clearReminders } from '../actions';
 import moment from 'moment';
 
 class Remainder extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: '',
-      dueDate: null,
-      id: Math.random()
-    }
-  }
-
   // This tells redux is working now
   addReminders() {
-    console.log(new Date(this.state.dueDate));
-    // console.log('this.state', this.state);
-    // console.log('this', this);
-    // console.log("--------------this.state.dueDate", this.state.dueDate)
+    let idValue = Math.random();
     let dateval = new Date(this.state.dueDate);
-    const rec = {text: this.state.text, dueDate: dateval};
+    const rec = {id: idValue, text: this.state.text, dueDate: dateval};
     this.props.addReminder(rec);
   }
 
   deleteReminder(id) {
-    console.log('deleting in application', id);
-    console.log('this.props', this.props);
     this.props.deleteReminder(id);
   }
 
-  // clearReminders() {
-  //   this.props.clearReminders();
-  // }
-
   renderReminders() {
     const { reminders } = this.props;
-    console.log('**********reminders*******', reminders );
     return(
       <ul className="list-group col-sm-4">
         {
@@ -108,7 +89,6 @@ class Remainder extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('state', state);
   return {
     reminders: state.reminders
   }
@@ -117,6 +97,5 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({addReminder, deleteReminder, clearReminders}, dispatch);
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Remainder);
 
-// export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(Remainder);
